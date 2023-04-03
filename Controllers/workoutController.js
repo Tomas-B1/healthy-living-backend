@@ -18,7 +18,7 @@ exports.index = (_req, res) => {
       );
   };
 
-exports.singleProduct = (req, res) => {
+exports.singleworkout = (req, res) => {
     knex("workouts")
       .where({ id: req.params.id })
       .then((workouts) => {
