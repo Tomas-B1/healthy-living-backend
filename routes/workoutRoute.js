@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const workoutController = require("../controllers/workoutController");
+const workoutController = require("../Controllers/workoutController");
 
 router.route("/").get(workoutController.index)
 
