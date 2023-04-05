@@ -1,14 +1,14 @@
 const knex = require("knex")(require("../knexfile"));
 
 exports.index = (_req, res) => {
-    knex("workouts")
+    knex("monday")
       .select(
-        "userworkouts.id",
-        "userworkouts.name",
-        "userworkouts.description",
-        "userworkouts.product_img",
-        "userworkouts.muscle",
-        "userworkouts.difficulty"
+        "monday.id",
+        "monday.name",
+        "monday.description",
+        "monday.product_img",
+        "monday.muscle",
+        "monday.difficulty"
       )
       .then((data) => {
         res.status(200).json(data);
@@ -18,19 +18,25 @@ exports.index = (_req, res) => {
       );
   };
 
-exports.singleProduct = (req, res) => {
-    knex("workouts")
-      .where({ id: req.params.id })
+  exports.addSingleItem = (req, res) => {
+    knex("monday")
+      .insert(req.body)
       .then((workouts) => {
         if (workouts.length === 0) {
           return res.status(404).json({
-            message: `Unable to find workout with id: ${req.params.id}`,
+            message: `Nothing in monday`,
+          });
+        }
+        res.json(workouts);
+      })
+      .catch((error) => {
+        if (error.code === "ER_DUP_ENTRY") {
+          return res.status(500).json({
+          message: "The item is already stored",
+          error,
           });
         }
   
-        res.json(workouts[0]);
-      })
-      .catch((error) => {
         return res.status(500).json({
           message: "There was an issue with the request",
           error,

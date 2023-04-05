@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const userRoutes = require('./routes/user-routes');
+const userRoutes = require('./routes/userRoute');
 const workoutRoutes = require("./routes/workoutRoute");
-const userworkoutRoutes = require("./routes/userworkoutRoute")
+const mondayWorkoutRoutes = require("./routes/mondayRoute")
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use("/user", userRoutes);
 app.use("/workout", workoutRoutes);
-app.use("/userworkout", userworkoutRoutes);
+app.use("/monday", mondayWorkoutRoutes);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

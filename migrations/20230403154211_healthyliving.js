@@ -3,7 +3,7 @@ exports.up = function (knex) {
     .createTable("users", (table) => {
         table.increments("id").primary();
         table.string("name").notNullable();
-        table.string("username").notNullable();
+        table.string("email").notNullable();
         table.string("password").notNullable();
         table.timestamp("updated_at").defaultTo(knex.fn.now());
       })
@@ -16,7 +16,7 @@ exports.up = function (knex) {
         table.string("difficulty").notNullable();
         table.timestamp("updated_at").defaultTo(knex.fn.now());
       })
-      .createTable("userworkouts", (table) => {
+      .createTable("monday", (table) => {
         table.increments("id").primary();
         table.string("name").notNullable();
         table.string("description", 1000).notNullable();
@@ -29,7 +29,7 @@ exports.up = function (knex) {
   
   exports.down = function (knex) {
     return knex.schema
-    .dropTable("user")
+    .dropTable("users")
     .dropTable("workouts")
-    .dropTable("userworkouts");
+    .dropTable("monday");
   };
