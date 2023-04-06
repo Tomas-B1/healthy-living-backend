@@ -7,4 +7,7 @@ router.route("/")
 router.route("/:id")
 .get(scheduleController.index)
 
+router.route("/:id/:day")
+.get(scheduleController.dayOfWeek)
+
 module.exports = router;

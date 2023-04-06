@@ -22,6 +22,28 @@ exports.index = (_req, res) => {
       );
   };
 
+  exports.dayOfWeek = (_req, res) => {
+    console.log(_req.params.day)
+    knex("schedule")
+      .join("workouts", "schedule.workout_id", "=", "workouts.id")
+        .where({dayOfWeek: _req.params.day})
+        .where({user_id: _req.params.id})
+        .select(
+          "workouts.name",
+          "workouts.muscle",
+          "workouts.difficulty",
+          "workouts.product_img",
+          "workouts.description",
+          "schedule.DayOfWeeK"
+        )
+      .then((data) => {
+        res.status(200).json(data);
+      })
+      .catch((err) =>
+        res.status(500).send(`Error retrieving schedule ${err}`)
+      );
+  };
+
   exports.addSingleItem = (req, res) => {
     const newWorkout = req.body;
     newWorkout.id = uuidv4()
