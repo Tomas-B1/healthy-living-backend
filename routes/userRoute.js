@@ -6,16 +6,13 @@ const authorize = require('../middleware/authorize');
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
-router.get('/profile', authorize, (req, res) => {
-        knex("users")
-        .select(
-          "users.id",
-          "users.name",
-        )
-        .then((data) => {
-          res.status(200).json(data);
+router.get("/", authorize, (req, res) => {
+    knex("users")
+        .where({ id: req.userId })
+        .then(data => {
+            return res.json(data);
         })
-      })
+});
         
   
 
