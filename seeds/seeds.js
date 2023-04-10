@@ -1,5 +1,5 @@
 const workoutData = require('../seed_data/workoutData');
-// const userworkoutData = require("../seed_data/userworkoutData");
+const mealData = require('../seed_data/mealData')
 
 exports.seed = function (knex) {
   return knex("workouts")
@@ -7,7 +7,8 @@ exports.seed = function (knex) {
     .then(function () {
       return knex("workouts").insert(workoutData);
     })
-    // .then(() => {
-    //   return knex("userworkout").insert(userworkoutData);
-    // });
+    .then(() => {
+      return knex("meals").insert(mealData);
+    })
 };
+

@@ -4,6 +4,7 @@ require("dotenv").config();
 const userRoutes = require('./routes/userRoute');
 const workoutRoutes = require("./routes/workoutRoute");
 const scheduleRoutes = require("./routes/scheduleRoute");
+const mealRoutes = require("./routes/mealRoute")
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use("/user", userRoutes);
 app.use("/workout", workoutRoutes);
 app.use("/schedule", scheduleRoutes);
+app.use("/meals", mealRoutes)
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
