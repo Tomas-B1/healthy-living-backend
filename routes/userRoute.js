@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 
 const corsConf = {
     origin: "https://healthylivingtoday.netlify.app",
-    methods: "GET,PUT,POST,DELETE",
+    methods: "POST",
     preflightContinue: false,
     optionsSuccessStatus: 204
   }
