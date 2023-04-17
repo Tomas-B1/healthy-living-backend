@@ -7,6 +7,13 @@ require("dotenv").config();
 const cors = require("cors");
 const jwt = require('jsonwebtoken');
 
+const corsConf = {
+    origin: "https://healthylivingtoday.netlify.app",
+    methods: "GET,PUT,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+  }
+
 router.get("/", authorize, (req, res) => {
     knex("users")
         .where({ id: req.userId })
@@ -17,7 +24,7 @@ router.get("/", authorize, (req, res) => {
         
   
 
-router.post("/login", cors()), (req, res) => {
+router.post("/login", cors(corsConf)), (req, res) => {
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({
             error: "Email and password fields are required"
@@ -52,7 +59,7 @@ router.post("/login", cors()), (req, res) => {
         })
 };
 
-router.post("/register", cors()), async (req, res) => {
+router.post("/register", cors(corsConf)), async (req, res) => {
    
     const { name, email, password } = req.body;
 
