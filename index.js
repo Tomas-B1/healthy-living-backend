@@ -10,7 +10,16 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 
-app.use(cors());
+const corsConf = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}
+
+app.use(cors(corsConf));
+
+// app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRoutes);
