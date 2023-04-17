@@ -11,8 +11,8 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 const corsConf = {
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  origin: "'https://healthyliving-tb.herokuapp.com",
+  methods: "GET,PUT,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204
 }

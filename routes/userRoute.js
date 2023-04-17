@@ -6,8 +6,6 @@ const authorize = require('../middleware/authorize');
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
-app.use(cors(corsOptions))
-
 router.get("/", authorize, (req, res) => {
     knex("users")
         .where({ id: req.userId })
