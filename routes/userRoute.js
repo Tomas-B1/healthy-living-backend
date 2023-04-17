@@ -5,6 +5,14 @@ const knex = require("knex")(require("../knexfile"));
 const authorize = require('../middleware/authorize');
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
+const cors=require("cors");
+const corsOptions ={
+    origin:'*', 
+    credentials:true, //access-control-allow-credentials:true
+     optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions))
 
 router.get("/", authorize, (req, res) => {
     knex("users")
