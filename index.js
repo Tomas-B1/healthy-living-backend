@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 const corsConf = {
-  origin: "https://healthyliving-tb.herokuapp.com/",
+  origin: "https://healthylivingtoday.netlify.app/",
   methods: "GET,PUT,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204
