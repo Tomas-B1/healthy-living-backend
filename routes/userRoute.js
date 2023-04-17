@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const knex = require("knex")(require("../knexfile"));
 const authorize = require('../middleware/authorize');
 require("dotenv").config();
+const cors = require("cors");
 const jwt = require('jsonwebtoken');
 
 router.get("/", authorize, (req, res) => {
@@ -16,7 +17,7 @@ router.get("/", authorize, (req, res) => {
         
   
 
-router.post("/login", (req, res) => {
+router.post("/login", cors()), (req, res) => {
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({
             error: "Email and password fields are required"
@@ -49,9 +50,9 @@ router.post("/login", (req, res) => {
                 token: token
             })
         })
-});
+};
 
-router.post("/register", async (req, res) => {
+router.post("/register", cors()), async (req, res) => {
    
     const { name, email, password } = req.body;
 
@@ -87,7 +88,7 @@ router.post("/register", async (req, res) => {
         message: "Successfully logged in",
         token
     })
-})
+}
 
 
 module.exports = router;
