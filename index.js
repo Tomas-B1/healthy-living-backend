@@ -10,16 +10,16 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 
-const corsConf = {
-  origin: "https://healthylivingtoday.netlify.app",
-  methods: "GET,PUT,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204
-}
+// const corsConf = {
+//   origin: "https://healthylivingtoday.netlify.app",
+//   methods: "GET,PUT,POST,DELETE",
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204
+// }
 
-app.use(cors(corsConf));
+// app.use(cors(corsConf));
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRoutes);
